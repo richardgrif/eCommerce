@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import prisma from 'lib/prisma'
+import * as localForage from 'localforage'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { getProducts } from 'lib/data'
@@ -9,6 +11,18 @@ import { getProducts } from 'lib/data'
 export default function Home({ products }) {
     const { data: session, status } = useSession()
     const [cart, setCart] = useState([])
+
+    useEffect(() => {
+        localForage.getItem('cart', function (err, value) {
+            if (value) {
+                setCart(value)
+            }
+        })
+    }, [])
+
+    useEffect(() => {
+        localForage.setItem('cart', cart)
+    }, [cart])
 
     return (
         <div>
