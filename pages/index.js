@@ -45,6 +45,11 @@ export default function Home({ products }) {
                                 </div>
                             </div>
                         ))}
+
+                        <button 
+                            className='mx-auto bg-gray-500 text-white px-3 py-1 my-4 text-sm justify-center flex'
+                            onClick={() => setCart([])}
+                        >Clear Cart</button>
                     </div>
                 )}
                 <div className='mt-20 sm:mx-auto max-w-4xl mx-10'>
@@ -76,6 +81,7 @@ export default function Home({ products }) {
                                             setCart([...cart, { product, quantity: 1 }])
                                         }
                                     }}
+
                                     className='mb-4 mx-auto bg-gray-500 text-white px-3 py-1 text-lg'
                                 >
                                 Add to cart
