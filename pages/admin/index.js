@@ -39,6 +39,7 @@ export default function Admin({ products }) {
                 </div>
                 ))}
             </div>
+            <Link href='/'>Back to Home</Link>
         </div>
     )
 }
