@@ -36,10 +36,10 @@ export default function Home({ products }) {
                 <h1 className='mt-10 font-extrabold text-4xl'>Dread's Shop</h1>
                 {cart.length > 0 && (
                     <div className='mt-20 sm:mx-auto max-w-4xl mx-10 border-2 border-gray-500'>
-                        <h3 className='py-2 font-extrabold text-2xl text-center'>You cart</h3>
+                        <h3 className='py-2 font-extrabold text-2xl text-center'>Your cart</h3>
                         {cart.map((item, index) => (
                             <div key={index} className='px-4 py-2 border-y border-gray-500 flex'>
-                                <div className='block mt-2'></div>
+                                
                                 <div className='mt-5 pl-4'>
                                     <span>{item.product.title}</span> - quantity: {item.quantity}
                                 </div>
@@ -55,10 +55,10 @@ export default function Home({ products }) {
                 <div className='mt-20 sm:mx-auto max-w-4xl mx-10'>
                     {products.map((product) => (
                         <div className='mb-4 grid sm:grid-cols-2' key={product.id}>
-                            <div>
+                            {/* <div>
                                 <Image src={`/` + product.image} width={'600'} height={'600'} />
-                            </div>
-                            <div className='sm:ml-10 mb-20 sm:mb-0'>
+                            </div> */}
+                            <div className='sm:ml-10 mb-20 sm:mb-0 text-left'>
                                 <h2 className='text-3xl font-extrabold'>{product.title}</h2>
                                 <h3 className='text-2xl font-extrabold mb-4'>${product.price / 100}</h3>
                                 <button 
@@ -86,7 +86,7 @@ export default function Home({ products }) {
                                 >
                                 Add to cart
                                 </button>
-                                <p className='text-xl'>{product.description}</p>
+                                <p className='text-xl text-justify'>{product.description}</p>
                             </div>
                         </div>
                     ))}
