@@ -1,3 +1,4 @@
+import { data } from 'autoprefixer'
 import prisma from 'lib/prisma'
 import nodemailer from 'nodemailer'
 
@@ -13,16 +14,18 @@ export default async (req, res) => {
     { expand: ['line_items']}
   )
 
-    console.log('if u see this then that means we are hitting the api!!')
+    //console.log('if u see this then that means we are hitting the api!!')
 
     await prisma.order.create({
-        data: {
-          customer: stripe_session.customer_details,
-          products: stripe_session.line_items,
-          payment_intent: stripe_session.payment_intent,
-          amount: parseInt(stripe_session.amount_total),
-        },
-      })
+      data: {
+        customer: stripe_session.customer_details,
+        products: stripe_session.line_items,
+        payment_intent: stripe_session.payment_intent,
+        amount: parseInt(stripe_session.amount_total),
+      },
+    })
+
+    console.log(data)
 
 
     const transporter = nodemailer.createTransport(process.env.EMAIL_SERVER)
@@ -38,7 +41,7 @@ export default async (req, res) => {
     
     `
 
-    stripe_session.line_items.map((item) => {
+    stripe_session.line_items.data.map((item) => {
         bodyToOwner += `<p>${item.quantity}x ${item.custom.name}</p>`
     })
 
@@ -48,7 +51,7 @@ export default async (req, res) => {
     <p>Products bought:</p>
     `
 
-    stripe_session.line_items.map((item) => {
+    stripe_session.line_items.data.map((item) => {
         bodyToCustomer += `<p>${item.quantity}x ${item.custom.name}</p>`
     })
 

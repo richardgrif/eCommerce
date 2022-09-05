@@ -33,7 +33,7 @@ export default function Home({ products }) {
                 <meta name='description' content='Shop' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
-
+            
             <div className='text-center'>
                 <h1 className='mt-10 font-extrabold text-4xl'>Dread's Shop</h1>
                 {cart.length > 0 && (
